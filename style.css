@@ -34,10 +34,13 @@ body {
   margin-top: 30px;
 }
 
-.button{
+.dropdown__button,
+.page__previus,
+.page__next {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 240px;
   height: 50px;
   cursor: pointer;
   border-radius: 4px;
@@ -50,13 +53,29 @@ body {
   justify-content: space-between;
 }
 
+.dropdown__button.active + .filter__menu {
+  display: block
+}
+.icon__down.transform{
+  transform: rotate(180deg);
+}
+
+.dropdown{
+  display: flex;
+  margin-top: 30px;
+}
+
+.dropdown__item{
+  line-height: 40px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
 .container__pokemon{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 30px;
-  background-color: rgb(160, 94, 94);
 }
 
 .container__info{
@@ -66,7 +85,7 @@ body {
   margin-top: 30px;
   width: 210px;
   height: 148px;
-  background-color: burlywood;
+  background-color: #ffffff;
 }
 
 .container__img{
@@ -87,6 +106,7 @@ body {
 }
 
 .pokemon__id{
+  opacity: 0.5;
   position: absolute;
   margin: 10px auto;
   left: 100px;
@@ -98,7 +118,8 @@ body {
   width: 50%;
   height: 50px;
   margin-top: 10px;
-  background-color: coral;
+  background-color: #3B3D4D;
+  color: #fff;
 }
 
 .pokemon__type-2{
@@ -108,8 +129,19 @@ body {
   right: 0;
   bottom: 0;
   width: 50%;
-  background-color: cornflowerblue;
+  background-color: #3B3D4D;
+  color: #fff;
 }
+
+.line {
+  position: absolute;
+  border-left: 0.1px solid #ffffff;
+  height: 50px;
+  left: 105px;
+  bottom: 0px;
+  z-index: 1;
+}
+
 .container__pagination{
   display: flex;
   margin-top: 30px;
@@ -126,11 +158,12 @@ body {
 .page__previus, 
 .page__next{
   width: 100px;
-  margin: 0;
+  margin: 1px;
   padding: 0;
   justify-content: space-evenly;
   border-radius: 0px;
 }
+
 /* Spinner */
 .lds-dual-ring {
   display: inline-block;
@@ -156,11 +189,28 @@ body {
     transform: rotate(360deg);
   }
 }
+
 .lds-dual-ring{
   position: absolute;
   top: 60%;
   left: 47%;
-} */
+}
+
+/* Filter by type */
+.filter__menu{
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 240px;
+  height: 251px;
+  top: 136px;
+  z-index: 2;
+  list-style: none;
+  padding: 0;
+  padding-top: 10px;
+  margin: 0;
+  overflow-y: scroll;
+}
 
 .width{
   width: 300px;
@@ -171,4 +221,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.block {
+  display: block;
+}
+
+.hide {
+  display: none ;
+}
+
 
