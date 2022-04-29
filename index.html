@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <title>Pokedex</title>
 </head>
 <body>
@@ -20,36 +20,26 @@
           <span>Filter by type...</span>
           <img src="img/Arrow.png " class="icon__down js-icon-down">
         </button>
-        <ul class="filter__menu js-filter-menu"></ul>
+        <ul class="filter__menu js-filter-menu"></ul> 
       </div>
       <div class="js-dropdown-container">
         <button class="dropdown__button js-dropdown-button" type="button" data-dropdown="sort">
           <span>Sort...</span>
           <img src="img/Arrow.png " class="icon__down js-icon-down">
         </button>
-        <ul class="filter__menu">
-          <li class="dropdown__item">By number (asc)</li>
-          <li class="dropdown__item">By number (desc)</li>
-          <li class="dropdown__item">By name (asc)</li>
-          <li class="dropdown__item">By name (desc)</li>
-        </ul>
+          <ul class="filter__menu">
+            <li class="dropdown__item">By number (asc)</li>
+            <li class="dropdown__item">By number (desc)</li>
+            <li class="dropdown__item">By name (asc)</li>
+            <li class="dropdown__item">By name (desc)</li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="container__pokemon js-container-pokemon"></div>
-    <div class="lds-dual-ring js-spinner"></div>
-    <div class="container__pagination">
-      <button class="page__previus js-previus button" type="button">
-        <img src="img/Previus.png" class="icon-pre">
-        <p>Previus</p>
-      </button>
-      <button class="page__next js-next button" type="button">
-        <p>Next</p>
-        <img src="img/Next.png" class="icon-next">
-      </button>
-    </div>
+      <div class="container__pokemon js-container-pokemon"></div>
+      <div class="lds-dual-ring js-spinner"></div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script/script.js"></script>
 </body>
 </html>

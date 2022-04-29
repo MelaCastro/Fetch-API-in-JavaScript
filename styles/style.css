@@ -212,6 +212,11 @@ body {
   overflow-y: scroll;
 }
 
+.link__pokemon{
+  text-decoration: none;
+  color: black;
+}
+
 .width{
   width: 300px;
 }
