@@ -80,7 +80,6 @@ body {
 
 .container__info{
   position: relative;
-  cursor: pointer;
   margin-left: 20px;
   margin-top: 30px;
   width: 210px;
@@ -142,27 +141,6 @@ body {
   z-index: 1;
 }
 
-.container__pagination{
-  display: flex;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.pagination{
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.page__previus, 
-.page__next{
-  width: 100px;
-  margin: 1px;
-  padding: 0;
-  justify-content: space-evenly;
-  border-radius: 0px;
-}
 
 /* Spinner */
 .lds-dual-ring {
@@ -217,10 +195,67 @@ body {
   color: black;
 }
 
+/* Pokemon tabs*/
+.container__tabs{
+  padding: 0;
+  width: 680px;
+  height: 268px;
+  background-color: #F2F2F6;
+  position: absolute;
+  left: 500px;
+  top: 90px;
+}
+.tab__list{
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  right: 0px;
+  height: 64px;
+}
+.tab__item{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+  width: 50%;
+}
+.tab__item.active{
+  background-color: #fff;
+  
+}
+.subcontainer{
+  background-color: #fff;
+  height: 204px;
+  position: relative;
+}
+.container__tabs .tab__content{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  opacity: 0;
+  transform: translateY(50%);
+  transition: all .5s ease;
+}
+.container__tabs .tab__content.active{
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.decoration{
+  text-decoration: none;
+  color: black;
+  padding-left: 25px;
+}
+
 .width{
   width: 300px;
 }
-
+.hide{
+  display: none;
+  
+}
 .center{
   display: flex;
   justify-content: center;
@@ -230,9 +265,4 @@ body {
 .block {
   display: block;
 }
-
-.hide {
-  display: none ;
-}
-
 
