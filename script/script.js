@@ -41,13 +41,12 @@ dropdown.addEventListener('click', (ev) => {
 
 // Functions
 function fetchPokeAPI(id) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-  .then(response => response.json())
-  .then(data => {
-    cardPokemon(data)
-    spinner.style.display = 'none'
+  return new Promise((resolve, reject) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error))
   })
-  .catch(error => console.log('ERROR:', error))
 }
 
 function fetchTypes() {
@@ -60,26 +59,50 @@ function fetchTypes() {
 function fetchByType(type) {
   if (!type) return
 
+  spinner.classList.add('block')
+
   fetch(`https://pokeapi.co/api/v2/type/${type}`)
     .then(response => response.json())
-    .then(data => {
+    .then(async data => {
       resetPokemons()
+      let promises = []
       data.pokemon.forEach(p => {
         const { url } = p.pokemon
         const revertedURL = url.split('/').reverse()
         const id = revertedURL[1]
-        fetchPokeAPI(id)
+        promises.push(fetchPokeAPI(id))
       })
+
+      await renderPokemos(promises)
+      spinner.classList.add('hide')
     })
     .catch(error => console.log('ERROR:', error))
 }
 
 
-function fetchPokemons(offset, limit) {
+async function fetchPokemons(offset, limit) {
   spinner.style.display = 'block'
+
+  let promises = []
+
   for(let i = offset; i <= offset + limit; i++) {
-    fetchPokeAPI(i)
+    promises.push(fetchPokeAPI(i))
   }
+
+  await renderPokemos(promises)
+
+
+  spinner.style.display = 'none'
+}
+
+async function renderPokemos (allPromise) {
+  const pokemos = await Promise.allSettled(allPromise)
+
+  pokemos.forEach((data) => {
+    if (data.status === 'fulfilled') {
+      cardPokemon(data.value)
+    }
+  })
 }
 
 
