@@ -108,7 +108,7 @@ async function pokeAbility({ abilities }) {
     const data = cur.value
     console.log(data)
     acc = acc + `
-      <div class="ability__subcontain">      
+      <div class="ability__subcontain">
         <span class="ability__name">${data.names[7].name}</span>
         <span class="ability__description">${data.effect_entries[1].short_effect}</span>
       </div>

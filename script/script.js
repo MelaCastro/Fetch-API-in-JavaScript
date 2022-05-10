@@ -4,9 +4,28 @@ const spinner = document.querySelector('.js-spinner')
 const menuFilter = document.querySelector('.js-filter-menu')
 const dropdown = document.querySelector('.js-dropdown')
 
+
 let offset = 1
 let limit = 99
 
+let isFilterBySort = ''
+let currentType = ''
+
+
+const handleSort = {
+  asc: (pokemos) => pokemos.sort((a, b) => a.id - b.id),
+  desc: (pokemos) => pokemos.sort((a, b) => b.id - a.id),
+  ascName: (pokemos) => pokemos.sort(function(a, b) {
+    if(a.species.name < b.species.name){
+      return -1
+    }
+  }),
+  descName: (pokemos) => pokemos.sort(function(a, b) {
+    if(a.species.name > b.species.name){
+      return -1
+    }
+  }),
+}
 
 
 // Events
@@ -28,15 +47,25 @@ dropdown.addEventListener('click', (ev) => {
 
     if (button.dataset.dropdown === 'type') {
       fetchByType(value)
+      currentType = value
       return 
     }
 
-     // Hacer la logica para cuando sea SORT
+    if (button.dataset.dropdown === 'sort') {
+      if(currentType) {
+        fetchByType(currentType)
+      }
 
+      // ordenarlos con los pokemos por defecto
+      isFilterBySort = value // asc
+      return 
+    }
 
+    currentType = ''
+    isFilterBySort = ''
   }
-})
 
+})
 
 
 // Functions
@@ -58,7 +87,6 @@ function fetchTypes() {
 
 function fetchByType(type) {
   if (!type) return
-
   spinner.classList.add('block')
 
   fetch(`https://pokeapi.co/api/v2/type/${type}`)
@@ -82,34 +110,38 @@ function fetchByType(type) {
 
 async function fetchPokemons(offset, limit) {
   spinner.style.display = 'block'
-
   let promises = []
 
   for(let i = offset; i <= offset + limit; i++) {
     promises.push(fetchPokeAPI(i))
   }
-
   await renderPokemos(promises)
-
 
   spinner.style.display = 'none'
 }
 
 async function renderPokemos (allPromise) {
   const pokemos = await Promise.allSettled(allPromise)
+  let parsedPokemos = []
 
+  
   pokemos.forEach((data) => {
     if (data.status === 'fulfilled') {
-      cardPokemon(data.value)
+      parsedPokemos.push(data.value)
     }
   })
+
+  if (isFilterBySort) {
+    parsedPokemos = handleSort[isFilterBySort]?.(parsedPokemos)
+  }
+
+  parsedPokemos.forEach(cardPokemon)
 }
-
-
 
 function resetPokemons() {
   pokemonContainer.innerHTML = ''
 }
+
 
 function cardPokemon(poke) {
   pokemonContainer.innerHTML += `
@@ -118,7 +150,7 @@ function cardPokemon(poke) {
         <div class="container__img">
           <img class="img__pokemon" src="${poke.sprites.front_default}">
         </div>
-        <p class="pokemon__name"><b>${poke.name}</b></p>
+        <p class="pokemon__name"><b>${poke.species.name}</b></p>
         <p class="pokemon__id">#${poke.id.toString().padStart(3, 0)}</p>
         <div class="line"></div>
         <div class="pokemon__type-1 center">${poke.types[0].type.name}</div>
@@ -127,6 +159,8 @@ function cardPokemon(poke) {
     </div>
   `
 }
+
+
 
 function typesPokemon(types) {
   const html = types.results.reduce((acc, cur) => {
@@ -140,7 +174,10 @@ function typesPokemon(types) {
   }, '')
 
   menuFilter.innerHTML = html
+  
 }
+
 
 fetchTypes()
 fetchPokemons(offset, limit)
+

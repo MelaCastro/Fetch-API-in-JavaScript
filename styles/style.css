@@ -201,7 +201,6 @@ body {
 .container__tabs{
   padding: 0;
   width: 680px;
-  height: 268px;
   background-color: #F2F2F6;
   position: absolute;
   left: 500px;
@@ -243,13 +242,13 @@ body {
   left: 30px;
   opacity: 0;
   text-transform: capitalize;
-  transform: translateY(50%);
+  transform: translateX(50%);
   transition: all .5s ease;
 }
 
-.container__tabs .tab__content.active{
+.tab__content.active{
   opacity: 1;
-  transform: translateY(0%);
+  transform: translateX(0%);
 }
 
 .stat__container{
