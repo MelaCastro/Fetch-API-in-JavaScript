@@ -35,8 +35,7 @@ body {
 }
 
 .dropdown__button,
-.page__previus,
-.page__next {
+.homepage__button {
   font-family: 'Roboto', sans-serif;
   display: flex;
   align-items: center;
@@ -51,6 +50,14 @@ body {
   padding-left: 25px;
   margin-right: 20px;
   justify-content: space-between;
+}
+.homepage__button{
+  margin-top: 20px;
+  position: relative;
+  left: 480px;
+  justify-content: center;
+  padding: 0;
+  width: 200px;
 }
 
 .dropdown__button.active + .filter__menu {

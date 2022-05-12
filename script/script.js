@@ -25,6 +25,7 @@ const handleSort = {
       return -1
     }
   }),
+  default: () =>  window.location.href = window.location.href
 }
 
 
@@ -56,7 +57,6 @@ dropdown.addEventListener('click', (ev) => {
         fetchByType(currentType)
       }
 
-      // ordenarlos con los pokemos por defecto
       isFilterBySort = value // asc
       return 
     }
@@ -163,6 +163,7 @@ function cardPokemon(poke) {
 
 
 function typesPokemon(types) {
+
   const html = types.results.reduce((acc, cur) => {
     acc = acc + `
       <li data-dropdown-item="${cur.name}" class="dropdown__item">
