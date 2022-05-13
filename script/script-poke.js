@@ -39,7 +39,7 @@ function cardPokemon(poke) {
         <div class="container__img">
           <img class="img__pokemon" src="${poke.sprites.front_default}">
         </div>
-        <p class="pokemon__name"><b>${poke.name}</b></p>
+        <p class="pokemon__name"><b>${poke.species.name}</b></p>
         <p class="pokemon__id">#${poke.id.toString().padStart(3, 0)}</p>
         <div class="line"></div>
         <div class="pokemon__type-1 center">${poke.types[0].type.name}</div>
