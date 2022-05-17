@@ -58,6 +58,7 @@ body {
   justify-content: center;
   padding: 0;
   width: 200px;
+  text-decoration: none;
 }
 
 .dropdown__button.active + .filter__menu {
@@ -209,9 +210,9 @@ body {
   padding: 0;
   width: 680px;
   background-color: #F2F2F6;
-  position: absolute;
-  left: 500px;
-  top: 90px;
+  position: relative;
+  left: 260px;
+  bottom: 148px;
 }
 
 .tab__list{
