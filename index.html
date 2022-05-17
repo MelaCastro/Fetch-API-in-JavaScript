@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
   <title>Pokedex</title>
 </head>
 <body>
@@ -14,5 +14,33 @@
     <nav class="container__nav">
       <p class="container__title">Pokédex</p>
     </nav>
+    <div class="dropdown js-dropdown">
+      <div class="js-dropdown-container">
+        <button class="dropdown__button js-dropdown-button" type="button" data-dropdown="type">
+          <span>Filter by type...</span>
+          <img src="img/Arrow.png " class="icon__down js-icon-down">
+        </button>
+        <ul class="filter__menu js-filter-menu"></ul> 
+      </div>
+      <div class="js-dropdown-container">
+        <button class="dropdown__button js-dropdown-button" type="button" data-dropdown="sort">
+          <span>Sort...</span>
+          <img src="img/Arrow.png " class="icon__down js-icon-down">
+        </button>
+          <ul class="filter__menu">
+            <li class="dropdown__item" data-dropdown-item="asc">By number (asc)</li>
+            <li class="dropdown__item" data-dropdown-item="desc">By number (desc)</li>
+            <li class="dropdown__item" data-dropdown-item="ascName">By name (asc)</li>
+            <li class="dropdown__item" data-dropdown-item="descName">By name (desc)</li>
+            <li class="dropdown__item" data-dropdown-item="default">By default</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container__pokemon js-container-pokemon"></div>
+      <div class="lds-dual-ring js-spinner"></div>
+    </div>
+  </div>
+
+  <script src="script/script.js"></script>
 </body>
 </html>
