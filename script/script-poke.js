@@ -3,7 +3,7 @@ const itemTab  = document.querySelectorAll('.js-item-tab')
 const contentTab = document.querySelectorAll('.js-content-tab')
 const statsContent = document.querySelector('.js-stat-content')
 const abilityContent = document.querySelector('.js-ability-content')
-const homepage = document.querySelector('.js-homepage')
+
 
 const querystring = window.location.search
 // console.log(querystring) 
@@ -22,7 +22,6 @@ itemTab.forEach(( elm , i ) => {
   })
 })
 
-homepage.addEventListener('click',() => location.href = "../index.html")
 
 function fetchPokeAPI(id) {
   fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
